@@ -7,13 +7,17 @@
 plugins {
   id 'com.github.ben-manes.versions' version '0.39.0'
   id 'com.adarshr.test-logger' version '3.0.0'
-  id 'java'
+  id 'application'
   id 'checkstyle'
   id 'jacoco'
 }
 
 repositories {
   mavenCentral()
+}
+
+application {
+  mainClass = 'hexlet.code.App'
 }
 
 test {
@@ -33,14 +37,20 @@ testlogger {
 }
 
 sourceCompatibility = '15'
+sourceSets.main.java.srcDirs = ['build/generated/sources/annotationProcessor/java/main','src/main/java']
 
 compileJava {
   options.release = 15
+  options.encoding = "UTF-8"
 }
 
 dependencies {
   compileOnly 'org.projectlombok:lombok:1.18.20'
 	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+  implementation 'io.javalin:javalin:4.0.1'
+  implementation 'org.slf4j:slf4j-simple:1.7.31'
+
   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
