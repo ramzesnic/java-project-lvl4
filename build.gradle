@@ -57,3 +57,6 @@ dependencies {
 
 group = 'hexlet.code'
 version = '1.0-SNAPSHOT'
+
+task stage(dependsOn: ['clean', 'installDist'])
+installDist.mustRunAfter clean
