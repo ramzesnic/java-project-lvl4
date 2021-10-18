@@ -8,6 +8,9 @@ build:
 install: clean
 	./gradlew install
 
+generate-migrations:
+	./gradlew generateMigrations
+
 run-dist:
 	./build/install/app/bin/app
 

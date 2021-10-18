@@ -1,0 +1,11 @@
+datasource:
+  db:
+    username: ""
+    password: ""
+    url: "jdbc:h2:./hexlet"
+
+ebean:
+  db:
+    ddl:
+      run: true
+      generate: true

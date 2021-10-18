@@ -10,6 +10,7 @@ plugins {
   id 'application'
   id 'checkstyle'
   id 'jacoco'
+  id 'io.ebean' version '12.12.1'
 }
 
 repositories {
@@ -37,7 +38,7 @@ testlogger {
 }
 
 sourceCompatibility = '15'
-sourceSets.main.java.srcDirs = ['build/generated/sources/annotationProcessor/java/main','src/main/java']
+//sourceSets.main.java.srcDirs = ['build/generated/sources/annotationProcessor/java/main','src/main/java']
 
 compileJava {
   options.release = 15
@@ -51,12 +52,31 @@ dependencies {
   implementation 'io.javalin:javalin:4.0.1'
   implementation 'org.slf4j:slf4j-simple:1.7.31'
 
+  implementation 'io.ebean:ebean:12.12.1'
+  implementation 'io.ebean:ebean-ddl-generator:12.12.1'
+  implementation 'io.ebean:ebean-querybean:12.12.1'
+  implementation 'io.ebean:ebean-migration:12.12.1'
+  implementation 'io.ebean:ebean-annotation:7.3'
+  annotationProcessor 'io.ebean:querybean-generator:12.12.1'
+
+  implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.5'
+  implementation 'javax.activation:activation:1.1.1'
+
+  implementation 'com.h2database:h2:1.4.200'
+
   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+  testImplementation 'org.assertj:assertj-core:3.19.0'
+  testImplementation 'io.ebean:ebean-test:12.11.5'
 }
 
 group = 'hexlet.code'
 version = '1.0-SNAPSHOT'
+
+task generateMigrations(type: JavaExec) {
+  classpath = sourceSets.main.runtimeClasspath
+  mainClass = 'hexlet.code.MigrationGenerator'
+}
 
 task stage(dependsOn: ['clean', 'installDist'])
 installDist.mustRunAfter clean

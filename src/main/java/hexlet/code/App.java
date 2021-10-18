@@ -3,10 +3,10 @@ package hexlet.code;
 import io.javalin.Javalin;
 
 public final class App {
-    private static final String defaultPort = "5000";
+    private static final String DEFAULT_PORT = "5000";
 
     private static int getPort() {
-        final String port = System.getenv().getOrDefault("PORT", defaultPort);
+        final String port = System.getenv().getOrDefault("PORT", DEFAULT_PORT);
         return Integer.valueOf(port);
     }
 
