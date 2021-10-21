@@ -15,10 +15,10 @@ run-dist:
 	./build/install/app/bin/app
 
 start:
-	./gradlew run
+	APP_ENV=development	./gradlew run
 
 check-updates:
-	./gradlew dependencyUpdates
+	APP_ENV=production ./gradlew dependencyUpdates
 
 lint:
 	./gradlew checkstyleMain
