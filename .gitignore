@@ -7,4 +7,3 @@ bin
 .settings
 .classpath
 .project
-*.db
