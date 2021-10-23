@@ -1,13 +1,9 @@
 package hexlet.code.controllers;
 
-import io.javalin.http.Handler;
+import io.javalin.http.Context;
 
 public final class RootController {
-    private static Handler main = ctx -> {
+    public static void main(Context ctx) {
         ctx.render("index.html");
-    };
-
-    public static Handler getMain() {
-        return main;
     }
 }
