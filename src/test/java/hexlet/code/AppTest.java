@@ -78,7 +78,7 @@ class AppTest {
                 .field("url", newSite)
                 .asEmpty();
 
-        assertThat(responsePost.getStatus()).isEqualTo(302);
+        assertThat(responsePost.getStatus()).isEqualTo(HttpStatus.FOUND);
         assertThat(responsePost.getHeaders().getFirst("Location")).isEqualTo("/urls");
 
         HttpResponse<String> responseGet = Unirest
@@ -88,10 +88,10 @@ class AppTest {
         assertThat(responseGet.getStatus()).isEqualTo(HttpStatus.OK);
         assertThat(responseGet.getBody()).contains("Страница успашно добавлена");
 
-        Url url = new QUrl().name.equalTo(newSite)
+        Url testurl = new QUrl().name.equalTo(newSite)
                 .findOne();
 
-        assertThat(url).isNotNull();
-        assertThat(url.getName()).isEqualTo(newSite);
+        assertThat(testurl).isNotNull();
+        assertThat(testurl.getName()).isEqualTo(newSite);
     }
 }
