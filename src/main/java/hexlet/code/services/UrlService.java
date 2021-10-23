@@ -1,9 +1,11 @@
 package hexlet.code.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import hexlet.code.domain.Url;
 import hexlet.code.domain.query.QUrl;
+import hexlet.code.dto.UrlDto;
 import hexlet.code.exceptions.DuplicateUrlException;
 import io.ebean.DuplicateKeyException;
 import io.ebean.PagedList;
@@ -19,18 +21,22 @@ public final class UrlService {
         }
     }
 
-    public static List<Url> getList(int first, int max) {
+    public static List<UrlDto> getList(int first, int max) {
         final PagedList<Url> pagedUrls = new QUrl()
                 .setFirstRow(first)
                 .setMaxRows(max)
                 .orderBy().id.asc()
                         .findPagedList();
 
-        return pagedUrls.getList();
+        return pagedUrls.getList()
+                .stream()
+                .map(UrlDto::new)
+                .collect(Collectors.toList());
     }
 
-    public static Url get(long id) {
-        return new QUrl().id.equalTo(id)
+    public static UrlDto get(long id) {
+        final Url url = new QUrl().id.equalTo(id)
                 .findOne();
+        return new UrlDto(url);
     }
 }

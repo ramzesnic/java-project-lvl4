@@ -4,7 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-import hexlet.code.domain.Url;
+import hexlet.code.dto.UrlDto;
 import hexlet.code.exceptions.IncorrectUrlException;
 import hexlet.code.services.UrlService;
 import io.javalin.http.Context;
@@ -43,7 +43,7 @@ public final class UrlController {
         final int rowsPerPage = 10;
         final int offset = (page - 1) * rowsPerPage;
 
-        final List<Url> urls = UrlService.getList(offset, rowsPerPage);
+        final List<UrlDto> urls = UrlService.getList(offset, rowsPerPage);
 
         ctx.attribute("page", page);
         ctx.attribute("urls", urls);
@@ -52,7 +52,7 @@ public final class UrlController {
 
     public static void getUrl(Context ctx) {
         final long id = ctx.pathParamAsClass("id", Long.class).getOrDefault(null);
-        final Url url = UrlService.get(id);
+        final UrlDto url = UrlService.get(id);
 
         ctx.attribute("url", url);
         ctx.render("urls/show.html");
