@@ -24,4 +24,4 @@ lint:
 	./gradlew checkstyleMain
 
 test:
-	./gradlew test
+	APP_ENV=test ./gradlew test

@@ -28,8 +28,8 @@
                 th:href="@{/urls/{id}(id=${url.getId()})}"
               ></a>
             </td>
-            <td></td>
-            <td></td>
+            <td th:text="${url.getLastCheck()}"></td>
+            <td th:text="${url.getLastCheckCode()}"></td>
           </tr>
         </tbody>
       </table>
@@ -42,9 +42,6 @@
               th:href="@{/urls(page=(${page < 2}) ? 1 : (${page - 1}))}"
               >Previous</a
             >
-          </li>
-          <li class="page-item active">
-            <a class="page-link" href="/urls?page=1">1</a>
           </li>
           <li class="page-item">
             <a class="page-link" th:href="@{/urls(page=${page + 1})}">Next</a>

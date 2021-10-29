@@ -51,6 +51,9 @@ public final class App {
                 post(UrlController::create);
                 path("{id}", () -> {
                     get(UrlController::getUrl);
+                    path("checks", () -> {
+                        post(UrlController::checkUrl);
+                    });
                 });
             });
         });

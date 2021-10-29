@@ -1,14 +1,11 @@
 package hexlet.code.domain;
 
 import java.time.Instant;
-import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 
 import io.ebean.Model;
 import io.ebean.annotation.Identity;
@@ -20,26 +17,26 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Setter
 @Getter
+@Setter
 @RequiredArgsConstructor
-public class Url extends Model {
+public class UrlCheck extends Model {
     @Id
     @Identity(generated = IdentityGenerated.BY_DEFAULT)
     private long id;
 
-    @Column(unique = true)
     @NotNull
-    private final String name;
+    private final int statusCode;
+    private final String title;
+    private final String h1;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @OrderBy("createdAt desc")
-    private List<UrlCheck> urlChecks;
+    @Lob
+    private final String description;
+
+    @ManyToOne
+    @NotNull
+    private final Url url;
 
     @WhenCreated
     private Instant createdAt;
-
-    public void addCheck(UrlCheck check) {
-        urlChecks.add(check);
-    }
 }
