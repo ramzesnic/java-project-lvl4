@@ -66,7 +66,7 @@ public final class UrlService {
         final String title = titleElement != null ? titleElement.text() : null;
         final Element descriptionElement = doc.selectFirst("meta[name='description']");
         final String description = descriptionElement != null ? descriptionElement.attr("content") : null;
-        final Element h1Element = doc.selectFirst("body > h1");
+        final Element h1Element = doc.selectFirst("h1");
         final String h1 = h1Element != null ? h1Element.text() : null;
 
         return new UrlCheck(statusCode, title, h1, description, url);
