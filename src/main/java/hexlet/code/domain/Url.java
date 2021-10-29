@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @RequiredArgsConstructor
-public class Url extends Model {
+public final class Url extends Model {
     @Id
     @Identity(generated = IdentityGenerated.BY_DEFAULT)
     private long id;
