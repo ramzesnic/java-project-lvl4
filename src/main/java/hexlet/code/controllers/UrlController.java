@@ -12,7 +12,7 @@ import io.javalin.http.Context;
 
 public final class UrlController {
     private static final String URL_WRONG_MSG = "Некорректный URL";
-    private static final String URL_SUCCESS_MSG = "Страница успашно добавлена";
+    private static final String URL_SUCCESS_MSG = "Страница успешно добавлена";
     private static final String URL_CHECKED_MSG = "Страница успешно проверена";
 
     private static String getUrlData(String urlSpec) throws IncorrectUrlException {

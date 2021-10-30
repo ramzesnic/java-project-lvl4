@@ -98,7 +98,7 @@ class AppTest {
                 .asString();
 
         assertThat(responseGet.getStatus()).isEqualTo(HttpStatus.OK);
-        assertThat(responseGet.getBody()).contains("Страница успашно добавлена");
+        assertThat(responseGet.getBody()).contains("Страница успешно добавлена");
 
         Url testurl = new QUrl().name.equalTo(newSite)
                 .findOne();
